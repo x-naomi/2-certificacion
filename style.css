@@ -1,0 +1,54 @@
+body {
+    font-family: sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+nav a {
+    margin-left: 10px;
+}
+
+.columnas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, textarea {
+    width: 250px;
+    padding: 4px;
+}
+
+form button {
+    display: block;
+    margin-top: 12px;
+}
+
+.alerta {
+    color: #c00;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #aaa;
+    padding: 5px;
+    text-align: left;
+}

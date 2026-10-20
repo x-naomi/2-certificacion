@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Viaje</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ viaje.destino }}</h1>
+        <nav>
+            <a href="/dashboard">Inicio</a>
+            <a href="/logout">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <p><strong>Organizador:</strong> {{ viaje.organizador }}</p>
+    <p><strong>Fecha Inicio:</strong> {{ viaje.fecha_inicio }}</p>
+    <p><strong>Fecha Fin:</strong> {{ viaje.fecha_fin }}</p>
+    <p><strong>Itinerario:</strong> {{ viaje.itinerario }}</p>
+
+    <h3>Viajeros</h3>
+    <ul>
+        {% for viajero in viajeros %}
+        <li>{{ viajero.nombre }} {{ viajero.apellido }}</li>
+        {% else %}
+        <li>Todavía no hay viajeros</li>
+        {% endfor %}
+    </ul>
+
+    {% if inscrito %}
+    <form action="/cancelar/{{ viaje.id }}" method="post">
+        <button type="submit">Cancelar</button>
+    </form>
+    {% else %}
+    <form action="/unirme/{{ viaje.id }}" method="post">
+        <button type="submit">Unirme!</button>
+    </form>
+    {% endif %}
+</body>
+</html>

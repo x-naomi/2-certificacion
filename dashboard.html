@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viajero Frecuente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Bienvenid@ {{ session['usuario_nombre'] }}</h1>
+        <nav>
+            <a href="/nuevo">Organizar Viaje</a>
+            <a href="/logout">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <table>
+        <tr>
+            <th>Destino</th>
+            <th>Organizador</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Acciones</th>
+        </tr>
+        {% for viaje in viajes %}
+        <tr>
+            <td>{{ viaje.destino }}</td>
+            <td>{{ viaje.organizador }}</td>
+            <td>{{ viaje.fecha_inicio }}</td>
+            <td>{{ viaje.fecha_fin }}</td>
+            <td>
+                <a href="/ver/{{ viaje.id }}">Ver</a>
+                {% if viaje.usuario_id == session['usuario_id'] %}
+                | <a href="/editar/{{ viaje.id }}">Editar</a>
+                | <a href="/borrar/{{ viaje.id }}">Borrar</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">No hay viajes próximos</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

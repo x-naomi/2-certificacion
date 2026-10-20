@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Viaje</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Nuevo Viaje</h1>
+        <nav>
+            <a href="/dashboard">Inicio</a>
+            <a href="/logout">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    {% for mensaje in get_flashed_messages(category_filter=['viaje']) %}
+        <p class="alerta">{{ mensaje }}</p>
+    {% endfor %}
+
+    <form action="/crear" method="post">
+        <label for="destino">Destino</label>
+        <input type="text" id="destino" name="destino" value="{{ viaje.destino }}">
+
+        <label for="fecha_inicio">Fecha de Inicio</label>
+        <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ viaje.fecha_inicio }}">
+
+        <label for="fecha_fin">Fecha de Fin</label>
+        <input type="date" id="fecha_fin" name="fecha_fin" value="{{ viaje.fecha_fin }}">
+
+        <label for="itinerario">Itinerario</label>
+        <textarea id="itinerario" name="itinerario" rows="4">{{ viaje.itinerario }}</textarea>
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>
